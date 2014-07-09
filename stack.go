@@ -30,7 +30,7 @@ func (s Stack) Use(wares ...Middleware) Stack {
 }
 
 func (s Stack) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-    defer Recover(w, req, nil)
+    defer Recover(w, req, s.RecoverCallback)
     response := Response{
         buffer: bytes.NewBufferString(""),
         code:   http.StatusOK,
