@@ -1,0 +1,9 @@
+language: go
+
+go:
+  - 1.2.1
+  - 1.3
+
+notifications:
+  email:
+    - cf-autoscale-eng@pivotallabs.com
