@@ -34,9 +34,9 @@ func (s Stack) Use(wares ...Middleware) Stack {
 }
 
 func (s Stack) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-    defer Recover(w, req, s.RecoverCallback)
-
     context := NewContext()
+
+    defer Recover(w, req, s.RecoverCallback, context)
 
     response := Response{
         buffer: bytes.NewBufferString(""),
