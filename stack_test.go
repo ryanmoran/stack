@@ -4,6 +4,7 @@ import (
     "fmt"
     "net/http"
     "net/http/httptest"
+    "sort"
     "strings"
     "time"
 
@@ -17,7 +18,9 @@ type Handler struct{}
 
 func (h Handler) ServeHTTP(w http.ResponseWriter, req *http.Request, context stack.Context) {
     var output string
-    for _, key := range context.Keys() {
+    keys := sort.StringSlice(context.Keys())
+    keys.Sort()
+    for _, key := range keys {
         output += context.Get(key).(string)
     }
     output += fmt.Sprintf("Handler\n")
