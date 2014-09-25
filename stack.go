@@ -18,10 +18,6 @@ type Response struct {
     header http.Header
 }
 
-type Handler interface {
-    ServeHTTP(http.ResponseWriter, *http.Request, Context)
-}
-
 func NewStack(handler Handler) Stack {
     return Stack{
         Handler: handler,
